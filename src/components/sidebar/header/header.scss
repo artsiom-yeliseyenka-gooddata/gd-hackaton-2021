@@ -2,6 +2,11 @@
 .header {
     display: flex !important;
     width: 100%;
+    & > button {
+        border: none;
+        border-bottom: 1px solid #b3b3b3;
+        border-radius: 0;
+    }
 
     &-tab {
         height: 70px;

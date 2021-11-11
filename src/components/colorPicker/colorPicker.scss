@@ -2,12 +2,14 @@
 .color-picker {
     display: inline-flex;
     position: relative;
+    border: 1px solid #b3b3b3;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
 
     .picker {
         position: absolute !important;
+        z-index: 1;
         top: 100%;
         left: 50%;
         transform: translate(-50%, 1rem);

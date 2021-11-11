@@ -1,10 +1,11 @@
 // (C) 2021 GoodData Corporation
-import { FC, useState, useMemo } from "react";
+import { FC } from "react";
 import classNames from "classnames/bind";
 
 import styles from "./sidebar.scss";
 import { IProps } from "./interface";
-import { Header } from "./header";
+import { Content } from "./content";
+
 import { useCurrentTheme } from "~utils/useCurrentTheme";
 import { Preloader } from "~components/preloader";
 
@@ -12,30 +13,10 @@ const cx = classNames.bind(styles);
 
 export const Sidebar: FC<IProps> = ({ classNames }) => {
     const { isLoading, error, data } = useCurrentTheme();
-    const [menuValue, setMenuValue] = useState("general");
-    const updateValue = (val) => setMenuValue(val);
-    const renderList = useMemo(() => {
-        // switch (menuValue) {
-        //     case 'general':
-        //         return;
-        //     case 'left':
-        //         return;
-        //     case 'back':
-        //         return;
-        //     case 'insight':
-        //         return;
-        //     default:
-        //         return;
-        // }
 
-        return <div />;
-    }, [menuValue]);
     return (
         <div className={cx("sidebar", classNames)}>
-            {isLoading ? <Preloader /> : error ? "Failed to get data" : <div className={cx("sidebar-innerContainer", classNames)}>
-                <Header updateValue={updateValue} />
-                {renderList}
-            </div> />}
+            {isLoading ? <Preloader /> : error ? "Failed to get data" : <Content data={data} />}
         </div>
     );
 };

@@ -11,7 +11,7 @@ import { Preloader } from "~components/preloader";
 
 const cx = classNames.bind(styles);
 
-export const Sidebar: FC<IProps> = ({ classNames }) => {
+export const Sidebar: FC<IProps> = ({ classNames, onSubmit }) => {
     const { isLoading, error, data, link } = useCurrentTheme();
 
     return (
@@ -21,7 +21,7 @@ export const Sidebar: FC<IProps> = ({ classNames }) => {
             ) : error ? (
                 "Failed to get data"
             ) : (
-                <Content data={data} link={link} />
+                <Content data={data} onSubmit={onSubmit} link={link} />
             )}
         </div>
     );

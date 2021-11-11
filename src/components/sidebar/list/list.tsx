@@ -5,6 +5,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
+import classNames from "classnames/bind";
+
+import styles from "./list.scss";
+
+const cx = classNames.bind(styles);
 
 type ListItem = { label: string; Component?: any; items?: { label: string; Component?: any }[] };
 
@@ -17,16 +22,21 @@ export const List = ({ data }: { data: (ListItem | ListItem[])[] }) => {
             return (
                 <div key={label}>
                     <ListItemButton onClick={() => setOpenItem(isItemOpened ? "" : label)}>
-                        <ListItemText primary={label} />
-                        <ListItemIcon>{Component}</ListItemIcon>
+                        <ListItemText className={cx("list-title")} primary={label} />
+                        <ListItemIcon className={cx("list-icon")}>{Component}</ListItemIcon>
                     </ListItemButton>
                     {items?.length && (
                         <Collapse in={isItemOpened} timeout="auto" unmountOnExit>
                             <MaterialList component="div" disablePadding>
                                 {items.map(({ label: subLabel, Component: SubComponent }) => (
                                     <ListItemButton key={subLabel} sx={{ pl: 4 }}>
-                                        <ListItemText primary={subLabel} />
-                                        <ListItemIcon>{SubComponent}</ListItemIcon>
+                                        <ListItemText
+                                            className={cx("list-title")}
+                                            primary={subLabel}
+                                        />
+                                        <ListItemIcon className={cx("list-icon")}>
+                                            {SubComponent}
+                                        </ListItemIcon>
                                     </ListItemButton>
                                 ))}
                             </MaterialList>

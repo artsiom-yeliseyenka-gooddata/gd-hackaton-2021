@@ -12,6 +12,8 @@ import styles from "./content.scss";
 import { Header } from "~components/sidebar/header";
 import { genericPostRequest } from "~utils/gdc";
 import { Left } from "./tabs/left";
+import { Back } from "./tabs/back";
+import { Insight } from "./tabs/insight";
 
 const cx = classNames.bind(styles);
 
@@ -55,9 +57,21 @@ export const Content: FC<IProps> = ({
                     />
                 );
             case "back":
-                return "back";
+                return (
+                    <Back
+                        getFieldMeta={getFieldMeta}
+                        getFieldProps={getFieldProps}
+                        setFieldValue={setFieldValue}
+                    />
+                );
             case "insight":
-                return "insight";
+                return (
+                    <Insight
+                        getFieldMeta={getFieldMeta}
+                        getFieldProps={getFieldProps}
+                        setFieldValue={setFieldValue}
+                    />
+                );
             default:
                 return "";
         }

@@ -1,42 +1,40 @@
+// (C) 2021 GoodData Corporation
 import React, { useMemo } from "react";
-import ListSubheader from "@mui/material/ListSubheader";
 import { List as MaterialList } from "@mui/material";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 
-export const List = ({ data }) => {
+type ListItem = { label: string; Component?: any; items?: { label: string; Component?: any }[] };
+
+export const List = ({ data }: { data: (ListItem | ListItem[])[] }) => {
     const [openItem, setOpenItem] = React.useState("");
 
     const renderKeys = useMemo(() => {
-        return Object.entries(data)
-            .sort()
-            .map(([key, value]) => {
-                const isItemOpened = openItem === key;
-                return (
-                    <div key={key}>
-                        <ListItemButton onClick={() => setOpenItem(isItemOpened ? "" : key)}>
-                            <ListItemText primary={key} />
-                            <ListItemIcon>{value?.base || ""}</ListItemIcon>
-                        </ListItemButton>
-                        {Object.keys(value)?.length > 1 && (
-                            <Collapse in={isItemOpened} timeout="auto" unmountOnExit>
-                                <MaterialList component="div" disablePadding>
-                                    {Object.entries(value)?.map(([name, color]) => (
-                                        <ListItemButton key={name} sx={{ pl: 4 }}>
-                                            <ListItemText primary={name} />
-                                            <ListItemIcon style={{ backgroundColor: color }}>
-                                                {color}
-                                            </ListItemIcon>
-                                        </ListItemButton>
-                                    ))}
-                                </MaterialList>
-                            </Collapse>
-                        )}
-                    </div>
-                );
-            });
+        return data.map(({ label, Component, items }) => {
+            const isItemOpened = openItem === label;
+            return (
+                <div key={label}>
+                    <ListItemButton onClick={() => setOpenItem(isItemOpened ? "" : label)}>
+                        <ListItemText primary={label} />
+                        <ListItemIcon>{Component}</ListItemIcon>
+                    </ListItemButton>
+                    {items?.length && (
+                        <Collapse in={isItemOpened} timeout="auto" unmountOnExit>
+                            <MaterialList component="div" disablePadding>
+                                {items.map(({ label: subLabel, Component: SubComponent }) => (
+                                    <ListItemButton key={subLabel} sx={{ pl: 4 }}>
+                                        <ListItemText primary={subLabel} />
+                                        <ListItemIcon>{SubComponent}</ListItemIcon>
+                                    </ListItemButton>
+                                ))}
+                            </MaterialList>
+                        </Collapse>
+                    )}
+                </div>
+            );
+        });
     }, [data, openItem]);
 
     return (

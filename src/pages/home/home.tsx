@@ -21,7 +21,7 @@ export const Home: FC = () => {
             <div className={cx("dashboard")}>
                 <iframe
                     key={reloadIframe}
-                    src="https://internaltraining.na.gooddata.com/dashboards/embedded/#/workspace/nhf9oxqkkgvspwn0gl4d7ejm9z5c37gp/dashboard/acJWbpaMbQEb?showNavigation=true" // TODO: refactor
+                    src="https://internaltraining.na.gooddata.com/dashboards/embedded/#/workspace/nhf9oxqkkgvspwn0gl4d7ejm9z5c37gp/dashboard/abkCwyNWI6Pe?showNavigation=true" // TODO: refactor
                     width="100%"
                     frameBorder="0"
                 />

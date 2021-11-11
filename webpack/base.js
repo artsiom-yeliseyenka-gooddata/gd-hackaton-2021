@@ -60,7 +60,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             favicon: path.resolve(__dirname, "../src/favicon.png"),
-            title: "GPP - GD Palette Picker",
+            title: "GoodData Beautify",
             template: path.resolve(__dirname, "../src/index.html"),
         }),
         new ProvidePlugin({

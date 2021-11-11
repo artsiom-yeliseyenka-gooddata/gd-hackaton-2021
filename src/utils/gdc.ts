@@ -1,45 +1,16 @@
 // (C) 2021 GoodData Corporation
+import { WORKSPACE_ID } from "~constants";
 
-export const requestPasswordChange = (email: string) =>
-    fetch("/gdc/account/lostpassword", {
-        method: "POST",
+export const getThemeObjects = (): Promise<any> =>
+    fetch(`/gdc/md/${WORKSPACE_ID}/query/themes`, {
+        method: "GET",
         headers: {
-            "Content-Type": "application/json",
+            Accept: "application/json",
         },
-        body: JSON.stringify({
-            lostPasswordRequest: {
-                login: email,
-                captcha: "",
-                verifyCaptcha: "",
-            },
-        }),
-    });
+    }).then((response) => response.json());
 
-export const changePassword = (token: string, password: string, passwordVerify: string) =>
-    fetch(`/gdc/account/lostpassword/${token}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            postSetNewPassword: {
-                password: password,
-                verifyPassword: passwordVerify,
-            },
-        }),
-    });
-
-export const registerUser = (payload) =>
-    fetch("/gdc/account/profile", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-    });
-
-export const getInvitation = (token: string) =>
-    fetch(`/gdc/account/invitations/${token}`, {
+export const genericGetRequest = (url: string): Promise<any> =>
+    fetch(url, {
         method: "GET",
         headers: {
             Accept: "application/json",

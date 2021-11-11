@@ -5,15 +5,15 @@ import classNames from "classnames/bind";
 import styles from "./sidebar.scss";
 import { IProps } from "./interface";
 import { Header } from "./header";
+import { useCurrentTheme } from "~utils/useCurrentTheme";
+import { Preloader } from "~components/preloader";
 
 const cx = classNames.bind(styles);
 
 export const Sidebar: FC<IProps> = ({ classNames }) => {
+    const { isLoading, error, data } = useCurrentTheme();
     const [menuValue, setMenuValue] = useState("general");
-    const [data, setData] = useState([]);
-
     const updateValue = (val) => setMenuValue(val);
-
     const renderList = useMemo(() => {
         // switch (menuValue) {
         //     case 'general':
@@ -30,13 +30,12 @@ export const Sidebar: FC<IProps> = ({ classNames }) => {
 
         return <div />;
     }, [menuValue]);
-
     return (
         <div className={cx("sidebar", classNames)}>
-            <div className={cx("sidebar-innerContainer", classNames)}>
+            {isLoading ? <Preloader /> : error ? "Failed to get data" : <div className={cx("sidebar-innerContainer", classNames)}>
                 <Header updateValue={updateValue} />
                 {renderList}
-            </div>
+            </div> />}
         </div>
     );
 };

@@ -1,5 +1,5 @@
 // (C) 2021 GoodData Corporation
-interface ILoadingState<V = any> {
+export interface ILoadingState<V = any> {
     isLoading: boolean;
     error: Error;
     data: V;

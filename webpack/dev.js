@@ -5,9 +5,7 @@ const path = require("path");
 const { HotModuleReplacementPlugin, DefinePlugin } = require("webpack");
 
 const backendShortcuts = {
-    dev: "https://nudata-dev.na.gooddata.com",
-    staging: "https://nudata-test.na.gooddata.com",
-    prod: "https://portal.nudatasecurity.com",
+    dev: "https://internaltraining.na.gooddata.com",
 };
 
 const BACKEND_URL = backendShortcuts.dev;

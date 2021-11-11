@@ -6,13 +6,13 @@
     display: flex;
     overflow: hidden;
 
-    .sidebar {
-        width: 30%;
-    }
+
 
     .content {
         display: flex;
-        width: 70%;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
         flex-grow: 1;
         overflow-y: auto;
     }

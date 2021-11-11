@@ -2,6 +2,7 @@
 import { FC, useMemo, useState } from "react";
 import { useFormik } from "formik";
 import classNames from "classnames/bind";
+import stringify from "json-stable-stringify";
 
 import { IProps } from "./interface";
 import { GeneralTab } from "./tabs";
@@ -16,8 +17,7 @@ export const Content: FC<IProps> = ({
         theme: { content, meta },
     },
 }) => {
-    console.log(content);
-    const { getFieldProps, handleSubmit, getFieldMeta } = useFormik({
+    const { getFieldProps, handleSubmit, getFieldMeta, setFieldValue, values } = useFormik({
         initialValues: content,
         onSubmit: (formValues) => {
             const payload = { theme: { meta, content: formValues } };
@@ -33,7 +33,13 @@ export const Content: FC<IProps> = ({
     const renderList = useMemo(() => {
         switch (menuValue) {
             case "general":
-                return <GeneralTab getFieldMeta={getFieldMeta} getFieldProps={getFieldProps} />;
+                return (
+                    <GeneralTab
+                        getFieldMeta={getFieldMeta}
+                        getFieldProps={getFieldProps}
+                        setFieldValue={setFieldValue}
+                    />
+                );
             case "left":
                 return "left";
             case "back":
@@ -43,12 +49,12 @@ export const Content: FC<IProps> = ({
             default:
                 return "";
         }
-    }, [menuValue]);
+    }, [menuValue, stringify(values)]);
 
     return (
-        <div className={cx("content")}>
+        <form onSubmit={handleSubmit} noValidate className={cx("content")}>
             <Header updateValue={updateValue} />
             {renderList}
-        </div>
+        </form>
     );
 };

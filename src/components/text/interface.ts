@@ -37,6 +37,7 @@ export interface IProps {
     className?: string;
     style?: CSSProperties;
     onDoubleClick?: MouseEventHandler<HTMLHeadingElement>;
+    onClick?: MouseEventHandler<HTMLHeadingElement>;
 }
 
 export interface IStoryProps extends IProps {

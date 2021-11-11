@@ -133,6 +133,7 @@ export const Text: FC<IProps> = ({
     noSpacing,
     style,
     onDoubleClick,
+    onClick,
 }) => {
     const presetClassNames = getPresetClassNames(
         preset ? presets[preset] : { size, font, uppercase, spacing, inline, color },
@@ -142,6 +143,7 @@ export const Text: FC<IProps> = ({
         <Element
             style={style}
             onDoubleClick={onDoubleClick}
+            onClick={onClick}
             className={cx(presetClassNames, { noSpacing, inline, color }, className)}
         >
             {children}

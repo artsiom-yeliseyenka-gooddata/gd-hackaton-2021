@@ -4,4 +4,5 @@ import { FieldInputProps, FieldMetaProps } from "formik";
 export interface ITabProps {
     getFieldMeta: (name: string) => FieldMetaProps<any>;
     getFieldProps: (nameOrOptions: any) => FieldInputProps<any>;
+    setFieldValue: any;
 }

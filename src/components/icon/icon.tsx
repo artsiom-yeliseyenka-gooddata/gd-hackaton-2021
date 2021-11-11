@@ -8,7 +8,7 @@ import styles from "./icon.scss";
 
 const cx = classNames.bind(styles);
 
-export const Icon: FC<IProps> = ({ className, size = "S", Icon: SvgIcon }) => {
+export const Icon: FC<IProps> = ({ className, size = "XL", Icon: SvgIcon }) => {
     return (
         <span className={cx("icon", { [`size-${size}`]: true }, className)}>{parser(SvgIcon)}</span>
     );

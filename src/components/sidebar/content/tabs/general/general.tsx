@@ -8,77 +8,170 @@ import styles from "./general.scss";
 
 import { ColorPicker } from "~components/colorPicker";
 import { List } from "~components/sidebar/list";
+import { Toggle } from "~components/toggle";
+import { Input } from "~components/input";
 
 const cx = classNames.bind(styles);
 
-const FIELDS = {
-    PALETTE: "palette",
-    PRIMARY_COLOR: "palette.primary.base",
-    COMPLEMENTARY_COLOR_0: "palette.complementary.c0",
-    COMPLEMENTARY_COLOR_1: "palette.complementary.c1",
-    COMPLEMENTARY_COLOR_2: "palette.complementary.c2",
-    COMPLEMENTARY_COLOR_3: "palette.complementary.c3",
-    COMPLEMENTARY_COLOR_4: "palette.complementary.c4",
-    COMPLEMENTARY_COLOR_5: "palette.complementary.c5",
-    COMPLEMENTARY_COLOR_6: "palette.complementary.c6",
-    COMPLEMENTARY_COLOR_7: "palette.complementary.c7",
-    COMPLEMENTARY_COLOR_8: "palette.complementary.c8",
-    COMPLEMENTARY_COLOR_9: "palette.complementary.c9",
-};
-
 export const GeneralTab: FC<ITabProps> = ({ getFieldMeta, getFieldProps, setFieldValue }) => {
-    const listConfig = [
+    const FIELDS = [
         {
-            label: "Primary",
-            Component: (
-                <ColorPicker
-                    label="Primary"
-                    {...getFieldProps(FIELDS.PRIMARY_COLOR)}
-                    {...getFieldMeta(FIELDS.PRIMARY_COLOR)}
-                    onChange={(value) => {
-                        console.log(value);
-                        setFieldValue(FIELDS.PRIMARY_COLOR, value);
-                    }}
-                />
-            ),
+            label: "Primary color",
+            value: "palette.primary.base",
+            component: "colorPicker",
         },
         {
-            label: "Complementary",
-            items: [
+            label: "Error color",
+            value: "palette.error.base",
+            component: "colorPicker",
+        },
+        {
+            label: "Success color",
+            value: "palette.success.base",
+            component: "colorPicker",
+        },
+        {
+            label: "Warning color",
+            value: "palette.warning.base",
+            component: "colorPicker",
+        },
+        {
+            label: "Complementary colors",
+            nestedItems: [
                 {
-                    label: "C0",
-                    Component: (
-                        <ColorPicker
-                            label="Primary"
-                            {...getFieldProps(FIELDS.COMPLEMENTARY_COLOR_0)}
-                            {...getFieldMeta(FIELDS.COMPLEMENTARY_COLOR_0)}
-                            onChange={(value) => {
-                                console.log(value);
-                                setFieldValue(FIELDS.COMPLEMENTARY_COLOR_0, value);
-                            }}
-                        />
-                    ),
+                    label: "Main Components",
+                    value: "palette.complementary.c0",
+                    component: "colorPicker",
                 },
                 {
-                    label: "C1",
-                    Component: (
-                        <ColorPicker
-                            label="Primary"
-                            {...getFieldProps(FIELDS.COMPLEMENTARY_COLOR_1)}
-                            {...getFieldMeta(FIELDS.COMPLEMENTARY_COLOR_1)}
-                            onChange={(value) => {
-                                console.log(value);
-                                setFieldValue(FIELDS.COMPLEMENTARY_COLOR_1, value);
-                            }}
-                        />
-                    ),
+                    label: "Hover",
+                    value: "palette.complementary.c1",
+                    component: "colorPicker",
+                },
+                {
+                    label: "Accent color",
+                    value: "palette.complementary.c2",
+                    component: "colorPicker",
+                },
+                {
+                    label: "Borders",
+                    value: "palette.complementary.c3",
+                    component: "colorPicker",
+                },
+                {
+                    label: "C4",
+                    value: "palette.complementary.c4",
+                    component: "colorPicker",
+                },
+                {
+                    label: "C5",
+                    value: "palette.complementary.c5",
+                    component: "colorPicker",
+                },
+                {
+                    label: "Highlight color",
+                    value: "palette.complementary.c6",
+                    component: "colorPicker",
+                },
+                {
+                    label: "Labels",
+                    value: "palette.complementary.c7",
+                    component: "colorPicker",
+                },
+                {
+                    label: "C8",
+                    value: "palette.complementary.c8",
+                    component: "colorPicker",
+                },
+                {
+                    label: "C9",
+                    value: "palette.complementary.c9",
+                    component: "colorPicker",
+                },
+            ],
+        },
+        {
+            label: "Buttons",
+            nestedItems: [
+                {
+                    label: "Border thickness",
+                    value: "button.borderRadius",
+                    component: "input",
+                },
+                {
+                    label: "Shadow",
+                    value: "button.dropShadow",
+                    component: "toggle",
+                },
+            ],
+        },
+        {
+            label: "Tooltip Colors",
+            nestedItems: [
+                {
+                    label: "Text color",
+                    value: "tooltip.color",
+                    component: "colorPicker",
+                },
+                {
+                    label: "Background color",
+                    value: "tooltip.backgroundColor",
+                    component: "colorPicker",
                 },
             ],
         },
     ];
 
+    const renderComponent = ({ value, component, label, nestedItems }) => {
+        if (nestedItems) {
+        }
+        switch (component) {
+            case "colorPicker":
+                return (
+                    <ColorPicker
+                        {...getFieldProps(value)}
+                        {...getFieldMeta(value)}
+                        onChange={(val) => setFieldValue(value, val)}
+                    />
+                );
+            case "toggle":
+                return (
+                    <Toggle
+                        label={label}
+                        {...getFieldProps(value)}
+                        {...getFieldMeta(value)}
+                        onChange={(val) => setFieldValue(value, val)}
+                    />
+                );
+            case "input":
+                return (
+                    <Input
+                        {...getFieldProps(value)}
+                        {...getFieldMeta(value)}
+                        onChange={(val) => setFieldValue(value, val)}
+                    />
+                );
+        }
+    };
+
+    const listConfig = FIELDS.map((field) =>
+        field?.nestedItems
+            ? {
+                  label: field.label,
+                  items: field.nestedItems.map((nestedItem) => ({
+                      label: nestedItem.label,
+                      Component: renderComponent(nestedItem),
+                  })),
+              }
+            : {
+                  label: field.label,
+                  Component: renderComponent(field),
+              },
+    );
+
     return (
         <div className={cx("general-tab")}>
+            <h6 className={cx("general-title")}>GENERAL STYLING</h6>
             <List data={listConfig} />
         </div>
     );

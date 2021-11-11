@@ -60,7 +60,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             favicon: path.resolve(__dirname, "../src/favicon.png"),
-            title: "NuData Portal",
+            title: "GPP - GD Palette Picker",
             template: path.resolve(__dirname, "../src/index.html"),
         }),
         new ProvidePlugin({

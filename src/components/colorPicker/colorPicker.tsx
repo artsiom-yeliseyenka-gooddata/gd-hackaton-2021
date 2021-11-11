@@ -35,7 +35,6 @@ const PRESET_COLORS = [
 ];
 
 export const ColorPicker: FC<IProps> = ({ value, onChange }) => {
-    console.log(value);
     const ref = useRef(null);
     const [opened, setOpened] = useState(false);
 

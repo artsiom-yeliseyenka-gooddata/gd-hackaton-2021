@@ -3,16 +3,19 @@ import { FC, useMemo, useState } from "react";
 import { useFormik } from "formik";
 import classNames from "classnames/bind";
 import stringify from "json-stable-stringify";
+import { Button } from "@mui/material";
 
 import { IProps } from "./interface";
 import { GeneralTab } from "./tabs";
 import styles from "./content.scss";
 
 import { Header } from "~components/sidebar/header";
+import { genericPostRequest } from "~utils/gdc";
 
 const cx = classNames.bind(styles);
 
 export const Content: FC<IProps> = ({
+    link,
     data: {
         theme: { content, meta },
     },
@@ -21,8 +24,7 @@ export const Content: FC<IProps> = ({
         initialValues: content,
         onSubmit: (formValues) => {
             const payload = { theme: { meta, content: formValues } };
-
-            console.log(payload);
+            genericPostRequest(`${link}?mode=edit`, payload);
         },
     });
 
@@ -55,6 +57,7 @@ export const Content: FC<IProps> = ({
         <form onSubmit={handleSubmit} noValidate className={cx("content")}>
             <Header updateValue={updateValue} />
             {renderList}
+            <Button type="submit">Submit</Button>
         </form>
     );
 };

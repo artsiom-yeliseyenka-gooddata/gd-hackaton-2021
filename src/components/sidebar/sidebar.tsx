@@ -12,11 +12,17 @@ import { Preloader } from "~components/preloader";
 const cx = classNames.bind(styles);
 
 export const Sidebar: FC<IProps> = ({ classNames }) => {
-    const { isLoading, error, data } = useCurrentTheme();
+    const { isLoading, error, data, link } = useCurrentTheme();
 
     return (
         <div className={cx("sidebar", classNames)}>
-            {isLoading ? <Preloader /> : error ? "Failed to get data" : <Content data={data} />}
+            {isLoading ? (
+                <Preloader />
+            ) : error ? (
+                "Failed to get data"
+            ) : (
+                <Content data={data} link={link} />
+            )}
         </div>
     );
 };

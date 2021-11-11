@@ -1,8 +1,10 @@
+// (C) 2021 GoodData Corporation
 import { FC, useState, useEffect, MouseEvent } from "react";
-import Box from "@mui/material/Box";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import classNames from "classnames/bind";
+
+import styles from "./header.scss";
 
 import { Icon } from "~components/icon";
 import BackIcon from "~icons/Back.svg";
@@ -10,7 +12,6 @@ import GeneralIcon from "~icons/General.svg";
 import InsightIcon from "~icons/Insight.svg";
 import LeftIcon from "~icons/Left.svg";
 
-import styles from "./header.scss";
 const cx = classNames.bind(styles);
 
 interface IHeader {
@@ -35,37 +36,22 @@ export const Header: FC<IHeader> = ({ updateValue }) => {
     }, [value]);
 
     return (
-        <Box
-            sx={{
-                display: "flex",
-                flex: 1,
-            }}
-        >
-            <ToggleButtonGroup className={cx("header", classNames)} size="large" {...control}>
-                <ToggleButton
-                    className={cx("header-tab", classNames)}
-                    value="general"
-                    key="general"
-                >
-                    <Icon Icon={GeneralIcon} />
-                </ToggleButton>
-                ,
-                <ToggleButton className={cx("header-tab", classNames)} value="left" key="left">
-                    <Icon Icon={LeftIcon} />
-                </ToggleButton>
-                ,
-                <ToggleButton className={cx("header-tab", classNames)} value="back" key="back">
-                    <Icon Icon={BackIcon} />
-                </ToggleButton>
-                ,
-                <ToggleButton
-                    className={cx("header-tab", classNames)}
-                    value="insight"
-                    key="insight"
-                >
-                    <Icon Icon={InsightIcon} />
-                </ToggleButton>
-            </ToggleButtonGroup>
-        </Box>
+        <ToggleButtonGroup className={cx("header")} size="large" {...control}>
+            <ToggleButton className={cx("header-tab")} value="general" key="general">
+                <Icon Icon={GeneralIcon} />
+            </ToggleButton>
+            ,
+            <ToggleButton className={cx("header-tab")} value="left" key="left">
+                <Icon Icon={LeftIcon} />
+            </ToggleButton>
+            ,
+            <ToggleButton className={cx("header-tab")} value="back" key="back">
+                <Icon Icon={BackIcon} />
+            </ToggleButton>
+            ,
+            <ToggleButton className={cx("header-tab")} value="insight" key="insight">
+                <Icon Icon={InsightIcon} />
+            </ToggleButton>
+        </ToggleButtonGroup>
     );
 };

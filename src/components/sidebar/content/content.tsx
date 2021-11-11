@@ -35,11 +35,11 @@ export const Content: FC<IProps> = ({
             case "general":
                 return <GeneralTab getFieldMeta={getFieldMeta} getFieldProps={getFieldProps} />;
             case "left":
-                return "";
+                return "left";
             case "back":
-                return "";
+                return "back";
             case "insight":
-                return "";
+                return "insight";
             default:
                 return "";
         }

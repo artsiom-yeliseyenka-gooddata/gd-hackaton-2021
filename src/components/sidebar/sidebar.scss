@@ -1,4 +1,9 @@
 // (C) 2021 GoodData Corporation
 .sidebar {
     position: relative;
+    &-innerContainer {
+        display: flex;
+        flex: 1;
+        align-items: flex-start !important; // ????
+    }
 }

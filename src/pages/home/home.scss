@@ -3,7 +3,8 @@
     position: relative;
     width: 100%;
 
-    .sidebar, .dashboard {
+    .sidebar,
+    .dashboard {
         height: 100%;
         display: inline-flex;
         align-items: center;
@@ -16,6 +17,5 @@
     }
     .dashboard {
         width: 70%;
-
     }
 }

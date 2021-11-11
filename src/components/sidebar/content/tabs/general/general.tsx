@@ -120,6 +120,46 @@ export const GeneralTab: FC<ITabProps> = ({ getFieldMeta, getFieldProps, setFiel
                 },
             ],
         },
+        {
+            label: "PopUp window",
+            nestedItems: [
+                {
+                    label: "Title color",
+                    value: "modal.title.color",
+                    component: "colorPicker",
+                },
+                {
+                    label: "Title line",
+                    value: "modal.title.lineColor",
+                    component: "colorPicker",
+                },
+                {
+                    label: "Border color",
+                    value: "modal.borderColor",
+                    component: "colorPicker",
+                },
+                {
+                    label: "Border radius",
+                    value: "modal.borderRadius",
+                    component: "input",
+                },
+                {
+                    label: "Border width",
+                    value: "modal.borderWidth",
+                    component: "input",
+                },
+                {
+                    label: "Drop shadow",
+                    value: "modal.dropShadow",
+                    component: "toggle",
+                },
+                {
+                    label: "Outside background color",
+                    value: "modal.outsideBackgroundColor",
+                    component: "colorPicker",
+                },
+            ],
+        },
     ];
 
     const renderComponent = ({ value, component, label, nestedItems }) => {

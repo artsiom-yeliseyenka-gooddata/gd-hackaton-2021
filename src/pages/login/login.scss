@@ -5,7 +5,10 @@
     flex-direction: column;
     padding: $SPACING_2;
     width: 50rem;
-    background-color: $C_WHITE;
+    margin: auto;
+    background-color: $C_GRAY-LIGHT;
+    border-radius: $BORDER_RADIUS;
+    border: 0.1rem solid $C_BLACK;
 
     .form {
         position: relative;

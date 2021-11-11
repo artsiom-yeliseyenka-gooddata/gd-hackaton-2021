@@ -66,11 +66,8 @@
     }
 
     &.color- {
-        &main-light {
-            color: $C_LIGHT_MAIN_TEXT;
-        }
-        &main-dark {
-            color: $C_DARK_MAIN_TEXT;
+        &main {
+            color: $C_MAIN_TEXT;
         }
         &secondary {
             color: $C_SECONDARY_TEXT;

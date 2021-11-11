@@ -71,7 +71,7 @@
                 height: 100%;
                 top: 0;
                 left: 0;
-                border-top-color: $C_RED-4;
+                border-top-color: $C_ORANGE;
                 transform: rotate(0deg);
                 animation: spin 1.75s linear infinite;
             }
@@ -80,7 +80,7 @@
                 height: 80%;
                 top: 10%;
                 left: 10%;
-                border-top-color: $C_GRAY-4;
+                border-top-color: $C_GRAY;
                 animation: spin 1.25s linear infinite;
             }
             &:nth-child(3) {
@@ -88,7 +88,7 @@
                 height: 60%;
                 top: 20%;
                 left: 20%;
-                border-top-color: $C_GOLD-4;
+                border-top-color: $C_BLUE_DARK;
                 animation: spin 0.75s linear infinite;
             }
         }

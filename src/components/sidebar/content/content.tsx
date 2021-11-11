@@ -11,6 +11,7 @@ import styles from "./content.scss";
 
 import { Header } from "~components/sidebar/header";
 import { genericPostRequest } from "~utils/gdc";
+import { Left } from "./tabs/left";
 
 const cx = classNames.bind(styles);
 
@@ -19,14 +20,17 @@ export const Content: FC<IProps> = ({
     data: {
         theme: { content, meta },
     },
+    onSubmit: reloadIframe,
 }) => {
     const { getFieldProps, handleSubmit, getFieldMeta, setFieldValue, values } = useFormik({
         initialValues: content,
         onSubmit: (formValues) => {
             const payload = { theme: { meta, content: formValues } };
             genericPostRequest(`${link}?mode=edit`, payload);
+            reloadIframe();
         },
     });
+    console.log("🚀 ~ file: content.tsx ~ line 24 ~ data", values);
 
     const [menuValue, setMenuValue] = useState("general");
 
@@ -43,7 +47,13 @@ export const Content: FC<IProps> = ({
                     />
                 );
             case "left":
-                return "left";
+                return (
+                    <Left
+                        getFieldMeta={getFieldMeta}
+                        getFieldProps={getFieldProps}
+                        setFieldValue={setFieldValue}
+                    />
+                );
             case "back":
                 return "back";
             case "insight":

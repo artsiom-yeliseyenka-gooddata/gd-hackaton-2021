@@ -12,6 +12,8 @@ import { Preloader } from "~components/preloader";
 import { useAuth } from "~contexts";
 import { Field } from "~components/field";
 
+import Logo from "./../../Logo.png";
+
 const cx = classNames.bind(styles);
 
 const FIELDS = {
@@ -33,48 +35,56 @@ export const Login: FC = () => {
     });
 
     return (
-        <div className={cx("login")}>
-            <form onSubmit={handleSubmit} onChange={clearError} noValidate className={cx("form")}>
-                <Text preset="Heading4" className={cx("text")}>
-                    Please login
-                </Text>
-                <Field
-                    label="Your Email"
-                    disabled={isLoading}
-                    placeholder="example@mail.com"
-                    className={cx("field")}
-                    required
-                    {...getFieldMeta(FIELDS.EMAIL)}
-                    {...getFieldProps(FIELDS.EMAIL)}
-                />
-                <Field
-                    label="Password"
-                    disabled={isLoading}
-                    type="password"
-                    placeholder="Enter Your Password"
-                    className={cx("field")}
-                    required
-                    {...getFieldMeta(FIELDS.PASSWORD)}
-                    {...getFieldProps(FIELDS.PASSWORD)}
-                />
-                <div className={cx("controls")}>
-                    {isLoading ? (
-                        <Preloader />
-                    ) : (
-                        <>
-                            {error ? (
-                                <Text className={cx("error")}>
-                                    Invalid email or password. Please try again.
-                                </Text>
-                            ) : (
-                                <Button className={cx("button")} type="submit">
-                                    Log In
-                                </Button>
-                            )}
-                        </>
-                    )}
-                </div>
-            </form>
+        <div className={cx("login-container")}>
+            <img className={cx("login-logo")} src={Logo} />
+            <div className={cx("login")}>
+                <form
+                    onSubmit={handleSubmit}
+                    onChange={clearError}
+                    noValidate
+                    className={cx("form")}
+                >
+                    <Text preset="Heading4" className={cx("text")}>
+                        Please login
+                    </Text>
+                    <Field
+                        label="Your Email"
+                        disabled={isLoading}
+                        placeholder="example@mail.com"
+                        className={cx("field")}
+                        required
+                        {...getFieldMeta(FIELDS.EMAIL)}
+                        {...getFieldProps(FIELDS.EMAIL)}
+                    />
+                    <Field
+                        label="Password"
+                        disabled={isLoading}
+                        type="password"
+                        placeholder="Enter Your Password"
+                        className={cx("field")}
+                        required
+                        {...getFieldMeta(FIELDS.PASSWORD)}
+                        {...getFieldProps(FIELDS.PASSWORD)}
+                    />
+                    <div className={cx("controls")}>
+                        {isLoading ? (
+                            <Preloader />
+                        ) : (
+                            <>
+                                {error ? (
+                                    <Text className={cx("error")}>
+                                        Invalid email or password. Please try again.
+                                    </Text>
+                                ) : (
+                                    <Button className={cx("button")} type="submit">
+                                        Log In
+                                    </Button>
+                                )}
+                            </>
+                        )}
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

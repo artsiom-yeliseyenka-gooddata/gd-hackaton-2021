@@ -8,10 +8,15 @@
     border-radius: 50%;
 
     .picker {
+        width: 172px !important;
+        border: 1px solid #b3b3b3;
         position: absolute !important;
         z-index: 1;
         top: 100%;
         left: 50%;
         transform: translate(-50%, 1rem);
+        & span > div {
+            border: 1px solid #b3b3b3;
+        }
     }
 }

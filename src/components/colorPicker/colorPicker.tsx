@@ -71,6 +71,7 @@ export const ColorPicker: FC<IProps> = ({ value, onChange }) => {
                             closePicker();
                         }}
                         colors={PRESET_COLORS}
+                        color={value}
                     />
                 </div>
             )}

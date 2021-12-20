@@ -25,6 +25,7 @@
     "@gooddata/sdk-model": "^8.5.0",
     "@gooddata/sdk-ui": "^8.5.0",
     "@gooddata/sdk-ui-ext": "^8.5.0",
+    "@mui/icons-material": "^5.1.0",
     "@mui/material": "^5.1.0",
     "@types/react-color": "^3.0.6",
     "@types/react-router-dom": "^5.1.7",

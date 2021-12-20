@@ -16,77 +16,90 @@ const cx = classNames.bind(styles);
 export const GeneralTab: FC<ITabProps> = ({ getFieldMeta, getFieldProps, setFieldValue }) => {
     const FIELDS = [
         {
-            label: "Primary color",
+            label: "Highlighted components",
             value: "palette.primary.base",
             component: "colorPicker",
         },
         {
-            label: "Error color",
+            label: "Error messages",
             value: "palette.error.base",
             component: "colorPicker",
         },
         {
-            label: "Success color",
+            label: "Success messages",
             value: "palette.success.base",
             component: "colorPicker",
         },
         {
-            label: "Warning color",
+            label: "Warning messages",
             value: "palette.warning.base",
             component: "colorPicker",
         },
         {
-            label: "Complementary colors",
+            label: "KD colors",
             nestedItems: [
                 {
                     label: "Main Components",
                     value: "palette.complementary.c0",
                     component: "colorPicker",
+                    tooltip: "Background color of dashboard, widgets, dialogs, etc.",
                 },
                 {
                     label: "Hover",
                     value: "palette.complementary.c1",
                     component: "colorPicker",
+                    tooltip: "Contrast background color",
                 },
                 {
                     label: "Accent color",
                     value: "palette.complementary.c2",
                     component: "colorPicker",
+                    tooltip: "More contrast background color",
                 },
                 {
                     label: "Borders",
                     value: "palette.complementary.c3",
                     component: "colorPicker",
+                    tooltip: "Border light color",
                 },
                 {
                     label: "C4",
                     value: "palette.complementary.c4",
                     component: "colorPicker",
+                    tooltip: "Border medium color",
                 },
                 {
                     label: "C5",
                     value: "palette.complementary.c5",
                     component: "colorPicker",
+                    tooltip: "Text light color, border dark color",
                 },
                 {
                     label: "Highlight color",
                     value: "palette.complementary.c6",
                     component: "colorPicker",
+                    tooltip:
+                        "Button on insights, loading graphic, filter menu groups,left menu hover, left | highlighter",
                 },
                 {
                     label: "Labels",
                     value: "palette.complementary.c7",
                     component: "colorPicker",
+                    tooltip:
+                        "Filter label, secondary button text, table labels, axis labels, button more on insights on hover, close menu 'x'",
                 },
                 {
                     label: "C8",
                     value: "palette.complementary.c8",
                     component: "colorPicker",
+                    tooltip: "Text color, table content, dropdown item text color",
                 },
                 {
                     label: "C9",
                     value: "palette.complementary.c9",
                     component: "colorPicker",
+                    tooltip:
+                        "Text dark color, foreground color, table content, dropdown item text color",
                 },
             ],
         },
@@ -201,6 +214,7 @@ export const GeneralTab: FC<ITabProps> = ({ getFieldMeta, getFieldProps, setFiel
                   items: field.nestedItems.map((nestedItem) => ({
                       label: nestedItem.label,
                       Component: renderComponent(nestedItem),
+                      tooltip: nestedItem?.tooltip,
                   })),
               }
             : {

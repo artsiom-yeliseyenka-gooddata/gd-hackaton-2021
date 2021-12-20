@@ -17,7 +17,7 @@ export const Input = ({ value, onChange }) => {
             }}
         >
             <TextField
-                helperText="Define border thickness in px"
+                helperText="Value in px"
                 value={value}
                 onChange={({ target: { value } }) => onChange(Number(value))}
                 className={cx("input")}

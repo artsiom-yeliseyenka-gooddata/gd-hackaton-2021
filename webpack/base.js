@@ -9,7 +9,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const getPublicPath = function (folder = "") {
-    return process.env.NODE_ENV === "development" ? "" : `/nudata/${folder}`;
+    return process.env.NODE_ENV === "development" ? "" : `/${folder}`;
 };
 
 module.exports = {

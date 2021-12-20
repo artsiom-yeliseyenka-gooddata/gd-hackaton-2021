@@ -5,10 +5,21 @@
     flex-direction: column;
     padding: $SPACING_2;
     width: 50rem;
-    margin: auto;
     background-color: $C_GRAY-LIGHT;
     border-radius: $BORDER_RADIUS;
     border: 0.1rem solid $C_BLACK;
+
+    &-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    &-logo {
+        width: 40%;
+        margin-bottom: 50px;
+    }
 
     .form {
         position: relative;
